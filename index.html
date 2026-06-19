@@ -424,26 +424,24 @@ input, textarea, select { font-family: inherit; }
         <div class="page-header"><h1>Dashboard</h1><p>Welcome back. Your career identity is active and visible to matched employers.</p></div>
         <div id="field-banner" style="display:none;flex-wrap:wrap;align-items:center;gap:6px;background:var(--green-light);border:1px solid var(--green-mid);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:1rem;font-size:13px;color:var(--green-dark);"></div>
         <div class="grid4">
-          <div class="metric"><div class="metric-label">Profile Score</div><div class="metric-val">87%</div><div class="metric-sub">↑ +4% this month</div></div>
-          <div class="metric"><div class="metric-label">Job Matches</div><div class="metric-val">12</div><div class="metric-sub">3 new today</div></div>
-          <div class="metric"><div class="metric-label">Skills Mapped</div><div class="metric-val">24</div><div class="metric-sub">AI extracted</div></div>
-          <div class="metric"><div class="metric-label">Portfolio Items</div><div class="metric-val">18</div><div class="metric-sub">Updated 2d ago</div></div>
+          <div class="metric"><div class="metric-label">Profile Score</div><div class="metric-val" id="metric-score">0%</div><div class="metric-sub">Complete your profile</div></div>
+          <div class="metric"><div class="metric-label">Job Matches</div><div class="metric-val" id="metric-matches">0</div><div class="metric-sub">Add skills to get matches</div></div>
+          <div class="metric"><div class="metric-label">Skills Mapped</div><div class="metric-val" id="metric-skills">0</div><div class="metric-sub">Upload resume to extract</div></div>
+          <div class="metric"><div class="metric-label">Portfolio Items</div><div class="metric-val" id="metric-portfolio">0</div><div class="metric-sub">Add projects & experience</div></div>
         </div>
         <div class="grid2">
           <div class="card">
             <div class="card-title"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="18" cy="6" r="4" fill="var(--green)" stroke="none"/></svg> AI Insights</div>
-            <div class="ai-box"><div class="ai-box-title">⚡ Skill gap detected</div><div class="ai-box-body">Your profile lacks cloud certification. Adding AWS or Azure increases match rate by ~34% for senior data roles.</div></div>
-            <div class="ai-box"><div class="ai-box-title">📈 Career momentum</div><div class="ai-box-body">Based on your trajectory, Data Analyst → Data Engineer transition is achievable within 18 months with current growth rate.</div></div>
-            <div class="ai-box ai-amber"><div class="ai-box-title">⚠ Portfolio alert</div><div class="ai-box-body">Your portfolio hasn't been updated in 2 days. Regular updates improve employer visibility score.</div></div>
+            <div id="ai-insights-empty" style="color:var(--text-3);font-size:13px;padding:1.5rem 0;text-align:center;">Upload your resume to get personalised AI insights</div>
+            <div id="ai-insights-content" style="display:none;">
+              <div class="ai-box"><div class="ai-box-title">⚡ Skill gap detected</div><div class="ai-box-body">Your profile lacks cloud certification. Adding AWS or Azure increases match rate by ~34% for senior data roles.</div></div>
+              <div class="ai-box"><div class="ai-box-title">📈 Career momentum</div><div class="ai-box-body">Based on your trajectory, Data Analyst → Data Engineer transition is achievable within 18 months with current growth rate.</div></div>
+            </div>
           </div>
           <div class="card">
             <div class="card-title"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Skill Competencies</div>
-            <div class="skill-bar"><div class="skill-row"><span>Python</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div></div>
-            <div class="skill-bar"><div class="skill-row"><span>Data Analysis</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div></div>
-            <div class="skill-bar"><div class="skill-row"><span>SQL</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div>
-            <div class="skill-bar"><div class="skill-row"><span>Machine Learning</span><span>60%</span></div><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></div>
-            <div class="skill-bar"><div class="skill-row"><span>Cloud (AWS)</span><span>30%</span></div><div class="bar-track"><div class="bar-fill" style="width:30%; background:var(--amber);"></div></div></div>
-            <div class="skill-bar"><div class="skill-row"><span>Spark / ETL</span><span>15%</span></div><div class="bar-track"><div class="bar-fill" style="width:15%; background:var(--red);"></div></div></div>
+            <div id="skill-bars-empty" style="color:var(--text-3);font-size:13px;padding:1.5rem 0;text-align:center;">Add skills in your portfolio to see competency chart</div>
+            <div id="skill-bars-content" style="display:none;"></div>
           </div>
         </div>
         <div class="grid2">
@@ -461,21 +459,7 @@ input, textarea, select { font-family: inherit; }
           </div>
           <div class="card">
             <div class="card-title"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Top Job Matches</div>
-            <div class="job-item">
-              <div class="job-logo" style="background:var(--green-light);color:var(--green-dark);">MY</div>
-              <div class="job-info"><div class="job-title">Junior Data Analyst</div><div class="job-meta">Maybank · Kuala Lumpur · RM 4,500–6,000</div></div>
-              <span class="match-pill match-high">92%</span>
-            </div>
-            <div class="job-item">
-              <div class="job-logo" style="background:var(--blue-light);color:#0C447C;">TM</div>
-              <div class="job-info"><div class="job-title">Data Engineer</div><div class="job-meta">Telekom Malaysia · Cyberjaya · RM 6,000–9,000</div></div>
-              <span class="match-pill match-high">87%</span>
-            </div>
-            <div class="job-item">
-              <div class="job-logo" style="background:var(--amber-light);color:#633806;">GX</div>
-              <div class="job-info"><div class="job-title">Analytics Associate</div><div class="job-meta">GXBank · Remote · RM 3,500–5,000</div></div>
-              <span class="match-pill match-mid">74%</span>
-            </div>
+            <div style="color:var(--text-3);font-size:13px;padding:1.5rem 0;text-align:center;">Add skills and upload your resume to see job matches</div>
           </div>
         </div>
       </div>
@@ -539,18 +523,7 @@ input, textarea, select { font-family: inherit; }
           <div class="card">
             <div class="card-title"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> Co-Curricular Activities</div>
             <div id="cocurric-list">
-              <div class="cocurric-item" style="padding:8px 0;border-bottom:1px solid var(--border);">
-                <div style="font-size:13px;font-weight:500;">President, AI Society UM</div>
-                <div style="font-size:12px;color:var(--text-2);">Managed 120+ members · 8 workshops organised</div>
-              </div>
-              <div class="cocurric-item" style="padding:8px 0;border-bottom:1px solid var(--border);">
-                <div style="font-size:13px;font-weight:500;">Hackathon Finalist</div>
-                <div style="font-size:12px;color:var(--text-2);">MyHackathon 2023 · Top 5 nationally</div>
-              </div>
-              <div class="cocurric-item" style="padding:8px 0;">
-                <div style="font-size:13px;font-weight:500;">Volunteer, Code for Malaysia</div>
-                <div style="font-size:12px;color:var(--text-2);">Digital literacy programme · 2022–2023</div>
-              </div>
+              <div id="cocurric-empty" style="color:var(--text-3);font-size:13px;padding:0.5rem 0;">No activities added yet</div>
             </div>
             <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
               <div class="section-label">Add activity</div>
@@ -585,19 +558,7 @@ input, textarea, select { font-family: inherit; }
 
           <!-- Existing projects -->
           <div id="projects-list">
-            <div style="border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:10px;">
-              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
-                <div style="font-size:13px;font-weight:600;">Sales Forecasting Dashboard</div>
-                <span class="tag tag-green" style="font-size:10px;">Featured</span>
-              </div>
-              <div style="font-size:12px;color:var(--text-2);margin-bottom:8px;">Built an end-to-end sales forecasting pipeline using Python and Power BI, reducing manual reporting time by 60% for a retail client. Deployed on AWS EC2.</div>
-              <div><span class="tag">Python</span><span class="tag">Power BI</span><span class="tag">AWS</span><span class="tag">Time Series</span></div>
-            </div>
-            <div style="border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:10px;">
-              <div style="font-size:13px;font-weight:600;margin-bottom:6px;">Student Grade Prediction Model</div>
-              <div style="font-size:12px;color:var(--text-2);margin-bottom:8px;">Trained a classification model using scikit-learn to predict at-risk students with 84% accuracy. Presented at UM's undergraduate research symposium.</div>
-              <div><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">pandas</span><span class="tag">ML</span></div>
-            </div>
+            <div id="projects-empty" style="color:var(--text-3);font-size:13px;padding:1rem 0;text-align:center;">No projects yet — add your first project above</div>
             <div id="user-projects"></div>
           </div>
         </div>
@@ -624,14 +585,7 @@ input, textarea, select { font-family: inherit; }
             <button class="add-btn" onclick="addWork()" style="width:100%;padding:9px;font-size:13px;">Save to portfolio</button>
           </div>
           <div id="work-list">
-            <div style="border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:10px;">
-              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
-                <div style="font-size:13px;font-weight:600;">Data Analyst Intern</div>
-                <span style="font-size:11px;color:var(--text-3);">Jun 2023 – Aug 2023</span>
-              </div>
-              <div style="font-size:12px;font-weight:500;color:var(--green-dark);margin-bottom:6px;">Maybank · Kuala Lumpur</div>
-              <div style="font-size:12px;color:var(--text-2);">Analysed customer transaction data using Python and SQL. Built a Power BI dashboard that reduced weekly reporting time by 40%.</div>
-            </div>
+            <div id="work-empty" style="color:var(--text-3);font-size:13px;padding:1rem 0;text-align:center;">No experience added yet — add your work history above</div>
             <div id="user-work"></div>
           </div>
         </div>
@@ -645,14 +599,7 @@ input, textarea, select { font-family: inherit; }
           <div style="margin-bottom:12px;">
             <div class="section-label" style="margin-bottom:8px;">Current skills</div>
             <div id="skills-list">
-              <span class="tag tag-green">Python</span>
-              <span class="tag tag-green">SQL</span>
-              <span class="tag tag-green">Data Analysis</span>
-              <span class="tag tag-green">Machine Learning</span>
-              <span class="tag tag-blue">Tableau</span>
-              <span class="tag tag-blue">Power BI</span>
-              <span class="tag">Microsoft Excel</span>
-              <span class="tag">Statistics</span>
+              <div id="skills-empty" style="color:var(--text-3);font-size:13px;padding:0.5rem 0;">No skills added yet — add your first skill below</div>
             </div>
           </div>
           <div style="padding-top:12px;border-top:1px solid var(--border);">
@@ -673,13 +620,11 @@ input, textarea, select { font-family: inherit; }
         <div class="card" style="margin-top:1rem;">
           <div class="card-title"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg> Certifications</div>
           <div class="grid2" style="margin:0;">
-            <div>
-              <div class="cert-item"><div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div><div><div style="font-size:13px;font-weight:500;">Google Data Analytics</div><div style="font-size:11px;color:var(--text-2);">Coursera · Mar 2024</div></div></div>
-              <div class="cert-item"><div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div><div><div style="font-size:13px;font-weight:500;">Python for Data Science</div><div style="font-size:11px;color:var(--text-2);">IBM · Jan 2024</div></div></div>
-              <div class="cert-item"><div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div><div><div style="font-size:13px;font-weight:500;">SQL Advanced</div><div style="font-size:11px;color:var(--text-2);">HackerRank · Nov 2023</div></div></div>
+            <div id="cert-list">
+              <div id="cert-empty" style="color:var(--text-3);font-size:13px;padding:0.5rem 0;">No certifications added yet</div>
             </div>
             <div>
-              <div class="cert-item"><div class="cert-icon" style="background:#E6F1FB;"><svg viewBox="0 0 24 24" style="stroke:#185FA5;"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div><div><div style="font-size:13px;font-weight:500;">AWS Cloud Practitioner</div><div style="font-size:11px;color:var(--amber);">In progress</div></div></div>
+            <div>
               <div class="cert-item" style="border:none;">
                 <div style="width:100%;">
                   <div class="section-label">Add certification</div>
@@ -1177,7 +1122,7 @@ const ANTHROPIC_KEY = 'YOUR_ANTHROPIC_KEY_HERE'; // Replace with your key
 // ── SUPABASE CONFIG ──
 // Replace SUPABASE_KEY with your project's anon/public key from Supabase Dashboard > Settings > API
 const SUPABASE_URL = 'https://tesmrgutcohphpvfqesv.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_3yI-rX7V02zS9Pidcc8vDw_N5TSz3J9'; // ← paste your anon key here
+const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE'; // ← paste your anon key here
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 let currentRole = 'candidate';
 let userName = '';
@@ -1256,19 +1201,25 @@ async function doRegister() {
   btn.disabled = true;
 
   try {
-    // 1. Create auth user in Supabase
+    // 1. Sign up — Supabase creates the auth user and auto signs in
     const { data: authData, error: authError } = await db.auth.signUp({ email, password });
     if (authError) { showError(authError.message); btn.textContent = 'Generate Career Identity'; btn.disabled = false; return; }
 
-    const authUserId = authData.user.id;
+    const authUserId = authData.user?.id;
+    if (!authUserId) { showError('Auth failed — no user returned. Try again.'); btn.textContent = 'Generate Career Identity'; btn.disabled = false; return; }
+
+    // 2. Wait briefly for Supabase session to propagate (avoids RLS race condition)
+    await new Promise(r => setTimeout(r, 500));
+
     const uid = generateUID();
     userName = (fn + ' ' + ln).trim();
     const fields = [...document.querySelectorAll('.fchip.selected')].map(c => c.dataset.field);
     window.userFields = fields;
 
-    // 2. Insert profile row linked to auth user
+    // 3. Insert profile row — auth_user_id links to auth.users for RLS
     if (currentRole === 'candidate') {
       const { error: dbError } = await db.from('candidates').insert({
+        auth_user_id: authUserId,
         career_id: uid,
         full_name: userName,
         email: email,
@@ -1278,16 +1229,29 @@ async function doRegister() {
         years_experience: 0,
         expected_salary: 0
       });
-      if (dbError) { showError('Account created but profile save failed: ' + dbError.message); btn.textContent = 'Generate Career Identity'; btn.disabled = false; return; }
+      if (dbError) {
+        // If auth_user_id column still missing, fall back to email-only insert
+        if (dbError.message.includes('auth_user_id')) {
+          const { error: fallbackError } = await db.from('candidates').insert({
+            career_id: uid, full_name: userName, email: email,
+            role: '', university: '', location: 'Malaysia',
+            years_experience: 0, expected_salary: 0
+          });
+          if (fallbackError) { showError('Profile save failed: ' + fallbackError.message); btn.textContent = 'Generate Career Identity'; btn.disabled = false; return; }
+        } else {
+          showError('Profile save failed: ' + dbError.message);
+          btn.textContent = 'Generate Career Identity'; btn.disabled = false; return;
+        }
+      }
     } else {
       const { error: dbError } = await db.from('employers').insert({
         company_name: userName,
         email: email
       });
-      if (dbError) { showError('Account created but profile save failed: ' + dbError.message); btn.textContent = 'Generate Career Identity'; btn.disabled = false; return; }
+      if (dbError) { showError('Profile save failed: ' + dbError.message); btn.textContent = 'Generate Career Identity'; btn.disabled = false; return; }
     }
 
-    // 3. Update UI and show success
+    // 4. Update UI
     const initials = (fn[0] || '') + (ln[0] || '');
     updateAllProfileUI({ name: userName, id: uid, initials, role: '', university: '', location: 'Malaysia', isEmployer: currentRole === 'employer' });
     document.getElementById('new-uid').textContent = uid;
@@ -1439,6 +1403,7 @@ function addCocurric() {
   const title = document.getElementById('cocurric-title').value.trim();
   const desc = document.getElementById('cocurric-desc').value.trim();
   if (!title) return;
+  const e = document.getElementById('cocurric-empty'); if (e) e.remove();
   const item = document.createElement('div');
   item.style.cssText = 'padding:8px 0;border-bottom:1px solid var(--border);';
   item.innerHTML = `<div style="font-size:13px;font-weight:500;">${title}</div><div style="font-size:12px;color:var(--text-2);">${desc}</div>`;
@@ -1451,25 +1416,23 @@ async function addSkill() {
   const val = document.getElementById('skill-input').value.trim();
   const level = document.getElementById('skill-level').value;
   if (!val) return;
+  const e = document.getElementById('skills-empty'); if (e) e.remove();
   const tag = document.createElement('span');
   tag.className = 'tag' + (level === 'green' ? ' tag-green' : level === 'blue' ? ' tag-blue' : '');
   tag.textContent = val;
   document.getElementById('skills-list').appendChild(tag);
   document.getElementById('skill-input').value = '';
+  // Update dashboard skill count
+  const skillCount = document.getElementById('skills-list').querySelectorAll('.tag').length;
+  const metricEl = document.getElementById('metric-skills');
+  if (metricEl) metricEl.textContent = skillCount;
   showNotif('Skill added to your profile!');
-
-  // Save to Supabase if candidate is logged in
   try {
     const careerId = document.getElementById('sb-user-id').textContent;
     if (careerId && careerId.startsWith('CIS-')) {
       const { data: candidate } = await db.from('candidates').select('id').eq('career_id', careerId).single();
       if (candidate) {
-        await db.from('skills').insert({
-          candidate_id: candidate.id,
-          skill_name: val,
-          proficiency: level === 'green' ? 'proficient' : level === 'blue' ? 'familiar' : 'learning'
-        });
-        console.log('✅ Skill saved:', val);
+        await db.from('skills').insert({ candidate_id: candidate.id, skill_name: val, proficiency: level === 'green' ? 'proficient' : level === 'blue' ? 'familiar' : 'learning' });
       }
     }
   } catch(e) { console.log('Skill save skipped:', e.message); }
@@ -1479,6 +1442,7 @@ function addProject() {
   const tech = document.getElementById('proj-tech').value.trim();
   const desc = document.getElementById('proj-desc').value.trim();
   if (!title) return;
+  const e = document.getElementById('projects-empty'); if (e) e.remove();
   const card = document.createElement('div');
   card.style.cssText = 'border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:10px;';
   card.innerHTML = `<div style="font-size:13px;font-weight:600;margin-bottom:6px;">${title}</div><div style="font-size:12px;color:var(--text-2);margin-bottom:8px;">${desc||'No description added.'}</div><div>${tech.split(',').map(t=>`<span class="tag">${t.trim()}</span>`).join('')}</div>`;
@@ -1487,6 +1451,7 @@ function addProject() {
   document.getElementById('proj-tech').value = '';
   document.getElementById('proj-desc').value = '';
   document.getElementById('add-project-form').style.display = 'none';
+  const m = document.getElementById('metric-portfolio'); if (m) m.textContent = parseInt(m.textContent||0) + 1;
   showNotif('Project added to your Living Portfolio!');
 }
 function addAchievement() {
@@ -1502,10 +1467,11 @@ function addAchievement() {
 function addCert() {
   const v = document.getElementById('cert-input').value.trim();
   if (!v) return;
-  const t = document.createElement('span');
-  t.className = 'tag tag-blue';
-  t.textContent = v;
-  document.getElementById('cert-tags').appendChild(t);
+  const e = document.getElementById('cert-empty'); if (e) e.remove();
+  const item = document.createElement('div');
+  item.className = 'cert-item';
+  item.innerHTML = `<div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div><div><div style="font-size:13px;font-weight:500;">${v}</div><div style="font-size:11px;color:var(--text-2);">Added manually</div></div>`;
+  document.getElementById('cert-list').appendChild(item);
   document.getElementById('cert-input').value = '';
   showNotif('Certification added!');
 }
@@ -1588,12 +1554,14 @@ function addWork(){
   const end = document.getElementById('work-end').value.trim();
   const desc = document.getElementById('work-desc').value.trim();
   if(!title) return;
+  const e = document.getElementById('work-empty'); if (e) e.remove();
   const card = document.createElement('div');
   card.style.cssText='border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:10px;';
   card.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;"><div style="font-size:13px;font-weight:600;">${title}</div><span style="font-size:11px;color:var(--text-3);">${start}${end?' – '+end:''}</span></div><div style="font-size:12px;font-weight:500;color:var(--green-dark);margin-bottom:6px;">${company}</div><div style="font-size:12px;color:var(--text-2);">${desc}</div>`;
   document.getElementById('user-work').appendChild(card);
   document.getElementById('work-title').value='';document.getElementById('work-company').value='';document.getElementById('work-start').value='';document.getElementById('work-end').value='';document.getElementById('work-desc').value='';
   document.getElementById('add-work-form').style.display='none';
+  const m = document.getElementById('metric-portfolio'); if (m) m.textContent = parseInt(m.textContent||0) + 1;
   showNotif('Work experience added to portfolio!');
 }
 function saveSalary(){showNotif('Salary preferences saved and visible to matched employers');}
